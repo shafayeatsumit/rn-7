@@ -1,5 +1,11 @@
 import { combineReducers } from 'redux';
+import LibraryReducer from './LibraryReducer';
 
-export default combineReducers ({
-	libraries: () => []
-})
+// reducers produce our application state
+// a reducer runs and provide us with state
+
+export default combineReducers({
+  libraries: LibraryReducer
+});
+
+//console.log(store.getState())
