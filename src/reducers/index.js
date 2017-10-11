@@ -1,13 +1,15 @@
-import { combineReducers } from 'redux';
-import LibraryReducer from './LibraryReducer';
-import SelectionReducer from './SelectionReducer';
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux'
+import AppNavigation from '../Navigation/AppNavigation'
 
-// reducers produce our application state
-// a reducer runs and provide us with state
+const navReducer = (state, action) => {
+  const newState = AppNavigation.router.getStateForAction(action, state)
+  return newState || state
+}
 
-export default combineReducers({
-  libraries: LibraryReducer,
-  selectedLibraryId: SelectionReducer,
-});
 
-//console.log(store.getState())
+
+const appReducer = combineReducers({
+  nav: navReducer
+})
+
+export default appReducer;
