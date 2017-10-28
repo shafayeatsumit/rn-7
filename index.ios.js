@@ -9,11 +9,17 @@ export default class finderios_redux extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page:"page1"
+      page:"page1",
+      routeData : null
     }
   }
-  onClick = (value) => {
-    this.setState({page:value})
+  onClick = (value,data) => {
+    if(value==="page2"){
+      this.setState({page:value,routeData:data})      
+    }else if (value==="page2"){
+      this.setState({page:value})
+      console.log("data ==>",data)      
+    }
   }
   render() {
     if (this.state.page === "page1"){
@@ -21,7 +27,7 @@ export default class finderios_redux extends Component {
         <Page1 clickEvent={this.onClick}/>
       )
     }else {
-      return <Page2 clickEvent={this.onClick}/>
+      return <Page2 clickEvent={this.onClick} routeData={this.state.routeData} />
     }
 
   }
